@@ -17,12 +17,10 @@ jobs:
       - task: Npm@1
         inputs:
           command: 'ci'
-          workingDir: './'
       - task: Npm@1
         inputs:
           command: 'custom'
-          workingDir: './'
-          customCommand: 'npm run build'
+          customCommand: 'build'
       - task: Docker@2
         inputs:
           containerRegistry: 'Docker'
