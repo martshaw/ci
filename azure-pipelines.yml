@@ -1,6 +1,25 @@
-- task: Docker@2
-  inputs:
-    containerRegistry: 'Docker'
-    repository: 'ci'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+trigger:
+  - master
+
+jobs:
+  - job: "Linux"
+    pool:
+      vmImage: "ubuntu-16.04"
+
+    steps:
+      - checkout: self
+        persistCredentials: true
+        clean: true
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "12.x"
+        displayName: "Install Node.js"
+      - script: |
+          npm install && npm run build
+        displayName: "npm install and build"
+      - task: Docker@2
+        inputs:
+          containerRegistry: 'Docker'
+          repository: 'ci'
+          command: 'buildAndPush'
+          Dockerfile: '**/Dockerfile'
