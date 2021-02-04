@@ -1,0 +1,34 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+  - master
+
+jobs:
+  - job: "Linux"
+    pool:
+      vmImage: "ubuntu-16.04"
+
+    steps:
+      - checkout: self
+        persistCredentials: true
+        clean: true
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "10.x"
+        displayName: "Install Node.js"
+      - script: |
+          curl -sSL "https://get.docker.com/gpg" |
+          sudo -E apt-key add -
+          echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" |
+          sudo tee -a /etc/apt/sources.list
+          sudo apt-get update
+          sudo apk add git openssh-client
+          sudo eval $(ssh-agent); ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+          sudo apt-get -o Dpkg::Options::="--force-confdef" \
+          -o Dpkg::Options::="--force-confold" --allow-unauthenticated --assume-yes install docker-engine
+          docker version
+          npm install -g npm
+          ls
