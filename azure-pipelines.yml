@@ -14,13 +14,9 @@ jobs:
         inputs:
           versionSpec: "12.x"
         displayName: "Install Node.js"
-      - task: Npm@1
-        inputs:
-          command: 'ci'
-      - task: Npm@1
-        inputs:
-          command: 'custom'
-          customCommand: 'build'
+      - script: |
+          npm install -g npm
+          npm ci && npm run build
       - task: Docker@2
         inputs:
           containerRegistry: 'Docker'
