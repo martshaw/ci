@@ -25,13 +25,5 @@ jobs:
         inputs:
           command: 'custom'
           workingDir: '$(Build.SourcesDirectory)'
-          customCommand: 'run build'  
-      - task: AzureRmWebAppDeployment@4
-        inputs:
-          ConnectionType: 'AzureRM'
-          azureSubscription: 'Free Trial(4d907b76-52f1-4882-8178-103b9e88c490)'
-          appType: 'webAppContainer'
-          WebAppName: 'ci-shaw-app'
-          DockerNamespace: 'ci:latest'
-          DockerRepository: 'shawci.azurecr.io'
-          DockerImageTag: 'ci:latest'
+          customCommand: 'run build'
+
