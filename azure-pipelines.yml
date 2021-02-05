@@ -32,4 +32,4 @@ jobs:
           repository: 'ci'
           command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
-          tags: '$(Build.BuildId):latest'
+          tags: '$(Build.BuildId)'
