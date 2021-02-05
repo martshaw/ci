@@ -21,11 +21,13 @@ jobs:
         inputs:
           command: 'install'
           workingDir: '$(Build.SourcesDirectory)'
+        displayName: "Npm Install"
       - task: Npm@1
         inputs:
           command: 'custom'
           workingDir: '$(Build.SourcesDirectory)'
           customCommand: 'run build'
+        displayName: "Npm InstalBuildl"
       - task: DockerCompose@0
         inputs:
           containerregistrytype: 'Azure Container Registry'
@@ -35,4 +37,5 @@ jobs:
           action: 'Run a Docker Compose command'
           dockerComposeCommand: 'up'
           arguments: '--scale nextjs=3 -d'
+        displayName: "Docker Compose"
 
