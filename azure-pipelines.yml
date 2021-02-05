@@ -31,13 +31,4 @@ jobs:
           gitHubConnection: 'martshaw'
           repositoryName: '$(Build.Repository.Name)'
           comment: 'PR built'
-      - task: GitHubRelease@1
-        inputs:
-          gitHubConnection: 'martshaw'
-          repositoryName: '$(Build.Repository.Name)'
-          action: 'create'
-          target: '$(Build.SourceVersion)'
-          tagSource: 'gitTag'
-          changeLogCompareToRelease: 'lastFullRelease'
-          changeLogType: 'commitBased'
 
