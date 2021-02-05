@@ -26,9 +26,12 @@ jobs:
           command: 'custom'
           workingDir: '$(Build.SourcesDirectory)'
           customCommand: 'run build'
-      - task: GitHubComment@0
+      - task: GitHubRelease@1
         inputs:
           gitHubConnection: 'martshaw'
           repositoryName: '$(Build.Repository.Name)'
-          comment: 'PR built'
-
+          action: 'create'
+          target: '$(Build.SourceVersion)'
+          tagSource: 'gitTag'
+          changeLogCompareToRelease: 'lastFullRelease'
+          changeLogType: 'commitBased'
