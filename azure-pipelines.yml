@@ -35,7 +35,7 @@ jobs:
           azureContainerRegistry: '{"loginServer":"shawci.azurecr.io", "id" : "/subscriptions/4d907b76-52f1-4882-8178-103b9e88c490/resourceGroups/ci/providers/Microsoft.ContainerRegistry/registries/shawci"}'
           dockerComposeFile: '**/docker-compose.yml'
           action: 'Run a Docker Compose command'
-          dockerComposeCommand: 'up'
+          dockerComposeCommand: 'rm --all'
           arguments: '--scale nextjs=3 -d'
         displayName: "Docker Compose"
 
