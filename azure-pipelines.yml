@@ -19,7 +19,7 @@ jobs:
       - task: Npm@1
         inputs:
           command: 'install'
-          workingDir: '$(Build.SourcesDirectory)'
+          workingDir: '$(Agent.BuildDirectory)'
       - task: Docker@2
         inputs:
           containerRegistry: 'Docker'
