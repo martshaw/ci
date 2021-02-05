@@ -14,9 +14,6 @@ jobs:
         inputs:
           versionSpec: "12.x"
         displayName: "Install Node.js"
-      - script: |
-          npm install -g npm
-          npm install && npm run build
       - task: Npm@1
         inputs:
           command: 'install'
