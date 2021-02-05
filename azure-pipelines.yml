@@ -26,3 +26,4 @@ jobs:
           command: 'custom'
           workingDir: '$(Build.SourcesDirectory)'
           customCommand: 'run build'
+
