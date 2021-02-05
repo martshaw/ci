@@ -1,0 +1,12 @@
+
+version: "3.5"
+services:
+  nextjs:
+    image: 9b591193df70
+    ports:
+      - "3000"
+    environment:
+      PORT: 3001
+    deploy:
+      mode: replicated
+      replicas: 2
