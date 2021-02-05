@@ -14,10 +14,12 @@ jobs:
         inputs:
           versionSpec: "12.x"
         displayName: "Install Node.js"
+      - script: |
+            ls
       - task: Npm@1
         inputs:
           command: 'install'
-          workingDir: '$(Build.SourcesDirectory)/ci/'
+          workingDir: '$(Build.SourcesDirectory)'
       - task: Docker@2
         inputs:
           containerRegistry: 'Docker'
