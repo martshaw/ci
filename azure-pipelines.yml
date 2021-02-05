@@ -19,10 +19,5 @@ jobs:
       - task: Npm@1
         inputs:
           command: 'install'
-          workingDir: '$(Agent.BuildDirectory)'
-      - task: Docker@2
-        inputs:
-          containerRegistry: 'Docker'
-          repository: 'ci'
-          command: 'buildAndPush'
-          Dockerfile: '**/Dockerfile'
+          workingDir: '$(Build.SourcesDirectory)'
+
