@@ -28,11 +28,20 @@ jobs:
           workingDir: '$(Build.SourcesDirectory)'
           customCommand: 'run build'
         displayName: "Npm InstalBuildl"
+      - task: DockerCompose@0
+        inputs:
+          containerregistrytype: 'Container Registry'
+          dockerRegistryEndpoint: 'Docker'
+          dockerComposeFile: '**/docker-compose.yml'
+          action: 'Run a Docker Compose command'
+          dockerComposeCommand: 'up'
+          arguments: '--scale nextjs=3 -d'
       - task: Docker@2
         inputs:
           containerRegistry: 'Docker'
           repository: 'ci'
           command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
+          tags: 'lastest'
           addPipelineData: false
 
