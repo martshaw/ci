@@ -1,12 +1,19 @@
-
-version: "3.5"
+version: '3.8'
 services:
-  nextjs:
-    image: 9b591193df70
-    ports:
+  app:
+    image: martshaw/ci:latest
+    expose:
       - "3000"
-    environment:
-      PORT: 3001
     deploy:
       mode: replicated
       replicas: 2
+  nginx:
+    restart: always
+    build:
+        context: ./nginx
+    ports:
+        - "80:80"
+networks:
+  default:
+    driver: bridge
+    name: app

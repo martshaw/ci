@@ -1,5 +1,5 @@
 # Use a Node.js image and assign it as our build
-FROM mhart/alpine-node:12 as build
+FROM node:alpine as build
 
 # Set the working directory, copy dependency management files to the working directory,
 # and install the dependencies
@@ -14,7 +14,7 @@ RUN npm run build && npm prune --production
 
 # Create a new image using a minimal Node.js image
 # with no extra tools packaged in, such as Yarn or npm for the smallest final size
-FROM mhart/alpine-node:12
+FROM node:alpine
 
 # Set the working directory for the new image and
 # set the `NODE_ENV` environment variable value to `production`
