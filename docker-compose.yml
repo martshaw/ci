@@ -1,19 +1,12 @@
-version: '3.8'
+version: '3'
 services:
-  app:
-    image: martshaw/ci:latest
-    expose:
-      - "3000"
-    deploy:
-      mode: replicated
-      replicas: 2
   nginx:
-    restart: always
-    build:
-        context: ./nginx
+    image: martshaw/nginx:latest
     ports:
-        - "80:80"
-networks:
-  default:
-    driver: bridge
-    name: app
+      - 80:80
+    depends_on:
+      - nextjs
+  nextjs:
+    image: martshaw/ci:latest
+    ports:
+      - "3000"

@@ -12,7 +12,7 @@ function Home(props) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-        Hi there! I'm being served from {hostname}</h1>
+        Hi there! I'm being served from <strong className={styles.bold}>{hostname}</strong></h1>
       </main>
     </div>
   )
