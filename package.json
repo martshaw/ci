@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next src",
     "build": "next build src",
-    "start": "next start build"
+    "start": "next start build",
+    "tests": "node ./__tests__/index.test.js"
   },
   "dependencies": {
     "next": "10.0.6",

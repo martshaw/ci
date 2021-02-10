@@ -26,6 +26,12 @@ jobs:
         inputs:
           command: 'custom'
           workingDir: '$(Build.SourcesDirectory)'
+          customCommand: 'run tests'
+        displayName: "Npm Test"
+      - task: Npm@1
+        inputs:
+          command: 'custom'
+          workingDir: '$(Build.SourcesDirectory)'
           customCommand: 'run build'
         displayName: "Npm Install and Build"
       - task: Docker@2
@@ -36,7 +42,7 @@ jobs:
           buildContext: $(Build.SourcesDirectory)
           Dockerfile: '**/Dockerfile'
           containerRegistry: "973d8913-c50b-4104-b3b5-9aedbf31b6d8"
-          tags: | 
+          tags: |
             $(Build.BuildId)
             latest
       - task: Docker@2
@@ -47,6 +53,6 @@ jobs:
           buildContext: $(Build.SourcesDirectory)/nginx
           Dockerfile: '**/nginx/Dockerfile'
           containerRegistry: "973d8913-c50b-4104-b3b5-9aedbf31b6d8"
-          tags: | 
+          tags: |
             $(Build.BuildId)
             latest
