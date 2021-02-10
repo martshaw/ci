@@ -1,41 +1,17 @@
 trigger:
-
   - master
-
 jobs:
-  - job: "Linux"
-    pool:
-      vmImage: "ubuntu-16.04"
-
-    steps:
-      - checkout: self
-        persistCredentials: true
-        clean: true
-      - task: NodeTool@0
-        inputs:
-          versionSpec: "12.x"
-        displayName: "Install Node.js"
-      - script: |
-            ls
-      - task: Npm@1
-        inputs:
-          command: 'install'
-          workingDir: '$(Build.SourcesDirectory)'
-        displayName: "Npm Install"
-      - task: Npm@1
-        inputs:
-          command: 'custom'
-          workingDir: '$(Build.SourcesDirectory)'
-          customCommand: 'run build'
-        displayName: "Npm InstalBuildl"
-      - task: Docker@2
-        displayName: Build and push an image to container registry
-        inputs:
-          command: buildAndPush
-          repository: martshaw/ci
-          buildContext: $(Build.SourcesDirectory)
-          Dockerfile: '**/Dockerfile'
-          containerRegistry: "973d8913-c50b-4104-b3b5-9aedbf31b6d8"
-          tags: | 
-            $(Build.BuildId)
-            latest
+- job: RunTest
+  workspace:
+    clean: all
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - task: Docker@2
+    displayName: Login to ACR
+    inputs:
+      command: run christiankm01/master:3.15.5
+  - task: Docker@2
+    displayName: run
+    inputs:
+      command: run christiankm01/master:3.15.5
