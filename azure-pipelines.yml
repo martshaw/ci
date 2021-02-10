@@ -44,8 +44,8 @@ jobs:
         inputs:
           command: buildAndPush
           repository: martshaw/nginx
-          buildContext: $(Build.SourcesDirectory)
-          Dockerfile: '**/nginx/Dockerfile'
+          buildContext: $(Build.SourcesDirectory)/nginx
+          Dockerfile: '**/Dockerfile'
           containerRegistry: "973d8913-c50b-4104-b3b5-9aedbf31b6d8"
           tags: | 
             $(Build.BuildId)
