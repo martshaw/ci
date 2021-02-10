@@ -34,6 +34,20 @@ npm run dev
 
 To view this, head to [http://localhost:3000](http://localhost:3000) when the above steps have been followed.
 
+
+### Run Tests
+
+```bash
+npm run tests
+```
+
+### Run Production
+
+```bash
+npm run build && npm start
+```
+
+
 ## Docker
 
 For productions with use 2 docker images.  One docker image from the root of the application can be built using the [Dockerfile](Dockerfile). It takes care of the following steps. If using the Dockerfile, the application will be exposed on port 3000.
