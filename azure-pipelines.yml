@@ -27,14 +27,25 @@ jobs:
           command: 'custom'
           workingDir: '$(Build.SourcesDirectory)'
           customCommand: 'run build'
-        displayName: "Npm InstalBuildl"
+        displayName: "Npm Install and Build"
       - task: Docker@2
-        displayName: Build and push an image to container registry
+        displayName: Build and push Web App image to container registry
         inputs:
           command: buildAndPush
           repository: martshaw/ci
           buildContext: $(Build.SourcesDirectory)
           Dockerfile: '**/Dockerfile'
+          containerRegistry: "973d8913-c50b-4104-b3b5-9aedbf31b6d8"
+          tags: | 
+            $(Build.BuildId)
+            latest
+      - task: Docker@2
+        displayName: Build and push Nginx image to container registry
+        inputs:
+          command: buildAndPush
+          repository: martshaw/nginx
+          buildContext: $(Build.SourcesDirectory)
+          Dockerfile: '**/nginx/Dockerfile'
           containerRegistry: "973d8913-c50b-4104-b3b5-9aedbf31b6d8"
           tags: | 
             $(Build.BuildId)
