@@ -10,3 +10,6 @@ services:
     image: martshaw/ci:latest
     ports:
       - "3000"
+    deploy:
+      mode: replicated
+      replicas: 2
