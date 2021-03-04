@@ -1,11 +1,11 @@
 {
   "name": "ci-app",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "dev": "next src",
     "build": "next build src",
-    "start": "next start build",
+    "start": "npm version patch && next start build",
     "tests": "node ./__tests__/index.test.js"
   },
   "dependencies": {
