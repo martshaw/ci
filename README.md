@@ -60,6 +60,10 @@ To combine these two images there is a simple docker-compose.yml file that is us
 docker-compose up
 ```
 
+## Kubernetes
+
+Included are nextjs-deployment.yaml file which setup 2 pods running the nextjs docker images which can then be used by the nextjs-service.yaml which setup a loadbalancer to serve these 2 pods.
+
 ## CI Setup
 
 With every PR created in the repo azure-piplines has been setup to test and build the application.  This runs a set of tasks defined in the azure-piplines.yml file.  These include:
